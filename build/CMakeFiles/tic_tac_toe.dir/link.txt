@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wextra -Wconversion -Wsign-conversion -std=c++11 -pedantic -fopenmp -O3 -DNDEBUG -march=native -ffast-math  -rdynamic CMakeFiles/tic_tac_toe.dir/exe/tic_tac_toe.cpp.o  -o tic_tac_toe 
