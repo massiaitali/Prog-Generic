@@ -129,7 +129,8 @@ class player_random
 		player_random(){}
 		std::pair<size_t, size_t> play (tic_tac_toe_t const& tic_tac_toe) const {
 			std::pair<size_t, size_t> move;
-			//TODO
+			std::vector<std::pair<size_t, size_t>> moves = tic_tac_toe.moves_possible();
+			move = moves[hopp::random::uniform(size_t(0), moves.size() - 1)];
 			return move;
 		}
 };
