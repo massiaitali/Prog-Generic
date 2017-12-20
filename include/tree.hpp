@@ -35,8 +35,12 @@ public:
 	
 	size_t nb_children() const
 	{
-		// TODO
-		return 0;
+		return
+			std::accumulate
+			(
+				children.begin(), children.end(), children.size(),
+				[](size_t const nb, tree<T> const & child) { return nb + child.nb_children(); }
+			);
 	}
 };
 
