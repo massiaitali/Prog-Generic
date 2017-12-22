@@ -126,7 +126,6 @@ std::ostream & operator <<(std::ostream & out, tic_tac_toe_t const & tic_tac_toe
 class player_random
 {
 	public:
-		player_random(){}
 		std::pair<size_t, size_t> play (tic_tac_toe_t const& tic_tac_toe) const {
 			std::pair<size_t, size_t> move;
 			std::vector<std::pair<size_t, size_t>> moves = tic_tac_toe.moves_possible();
@@ -141,12 +140,40 @@ class player_random
 class player_ai
 {
 	public:
-		player_ai(){}
-		std::pair<size_t, size_t> play (tic_tac_toe_t const& tic_tac_toe) const {
+		std::pair<size_t, size_t> play (tic_tac_toe_t const& tic_tac_toe) {
+			std::cout<<"Player ai"<<std::endl;
+			tree<std::pair<tic_tac_toe_t, int>> games(std::make_pair(tic_tac_toe, 0));
+			generate_children(games);
+			std::cout << "Nb enfant : " << games.nb_children() << std::endl;
 			std::pair<size_t, size_t> move;
 			//TODO
 			return move;
 		}
+
+	private : 
+		std::vector<tree<std::pair<tic_tac_toe_t, int>>> generate_games(tic_tac_toe_t const & tic_tac_toe)
+		{
+			std::vector<std::pair<size_t, size_t>> moves = tic_tac_toe.moves_possible();
+
+			std::vector<tree<std::pair<tic_tac_toe_t, int>>> tree(moves.size(), std::make_pair(tic_tac_toe, 0));
+			
+			for (size_t i = 0; i < moves.size(); ++i)
+			{
+				tree[i].data.first.play(moves[i].first, moves[i].second);
+			}
+			
+			return tree;
+		};
+		
+		void generate_children(tree<std::pair<tic_tac_toe_t, int>> & games)
+		{
+			games.children = generate_games(games.data.first);
+			
+			for (auto & c : games.children)
+			{
+				generate_children(c);
+			}
+		};
 };
 
 

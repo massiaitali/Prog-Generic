@@ -35,12 +35,8 @@ public:
 	
 	size_t nb_children() const
 	{
-		return
-			std::accumulate
-			(
-				children.begin(), children.end(), children.size(),
-				[](size_t const nb, tree<T> const & child) { return nb + child.nb_children(); }
-			);
+		auto l =  [&](size_t sum, tree<T> elem){return sum + size_t(1) + elem.nb_children();};
+		return std::accumulate(children.begin(), children.end(),size_t(0),l);
 	}
 };
 

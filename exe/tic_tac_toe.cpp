@@ -24,23 +24,24 @@ int main()
 	
 	// rvalue
 	{
-		//tic_tac_toe.run(player_random(), player_random());
+	//	tic_tac_toe.run(player_random(), player_random());
 		
-		//tic_tac_toe.run(player_random(), player_ai());
+	//	tic_tac_toe.run(player_random(), player_ai());
 		
-		//tic_tac_toe.run(player_ai(), player_random());
+	//	tic_tac_toe.run(player_ai(), player_random());
 		
-		//tic_tac_toe.run(player_ai(), player_ai());
+	//	tic_tac_toe.run(player_ai(), player_ai());
 	}
 	
 	// lvalue
 // 	{
 // 		tic_tac_toe_t tic_tac_toe;
 // 		
-// 		player_random a;
-// 		player_ai b;
+ 		player_random a;
+ 		player_ai b;
 // 		
-// 		tic_tac_toe.run(a, b);
+ 		tic_tac_toe.run(a, b);
+		b.play(tic_tac_toe);
 // 	}
 	
 	return 0;
